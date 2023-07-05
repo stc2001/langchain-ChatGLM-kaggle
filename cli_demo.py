@@ -23,7 +23,7 @@ def main():
                           top_k=VECTOR_SEARCH_TOP_K)
     vs_path = None
     while not vs_path:
-        filepath = input("Input your local knowledge file path 请输入本地知识文件路径：")
+        filepath = '/kaggle/input/magosaki/magosaki.txt'
         # 判断 filepath 是否为空，如果为空的话，重新让用户输入,防止用户误触回车
         if not filepath:
             continue
@@ -41,14 +41,7 @@ def main():
                 last_print_len = len(resp["result"])
             else:
                 print(resp["result"])
-        if REPLY_WITH_SOURCE:
-            source_text = [f"""出处 [{inum + 1}] {os.path.split(doc.metadata['source'])[-1]}：\n\n{doc.page_content}\n\n"""
-                           # f"""相关度：{doc.metadata['score']}\n\n"""
-                           for inum, doc in
-                           enumerate(resp["source_documents"])]
-            print("\n\n" + "\n\n".join(source_text))
-
-
+       
 if __name__ == "__main__":
 #     # 通过cli.py调用cli_demo时需要在cli.py里初始化模型，否则会报错：
     # langchain-ChatGLM: error: unrecognized arguments: start cli
